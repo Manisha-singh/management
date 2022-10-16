@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Registration</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <div class="col-4 text-right">
+                <a href="{% url 'book-list' %}" class="btn btn-sm btn-primary">View All</a>
+    </div>
+    <form action="create" method="post">
+        {% csrf_token %}
+
+        <input type="text" name="name" placeholder="Book"><br>
+        <input type="text" name="author" placeholder="Author"><br>
+        <input type="text" name="book_number" placeholder="Book number"><br>
+        <button type="Submit">Create</button>
+
+    </form>
+
+    <div>
+        {% for message in messages %}
+        <h3> {{message}}  </h3>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

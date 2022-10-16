@@ -1,0 +1,58 @@
+{% block page_content %}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card bg-secondary shadow h-100">
+            <div class="card-header bg-white border-0">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h3 class="mb-0">List of Issues Books</h3>
+                    </div>
+                    <div>
+                        <form action="http://localhost:8000/auth/logout"><button type="submit" >Logout</button></form>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Book Number</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'book-detail' book.book.id %}">{{book.book.id}}</a>
+                        </td>
+                        <td>{{book.book.name}}</td>
+                        <td>{{book.book.author}}</td>
+                        <td>{{book.book.book_number}}</td>
+                        <td class="text-right">
+                            <div class="dropdown">
+                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fas fa-ellipsis-v"></i>
+                            </a>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                    <a class="dropdown-item" href="{% url 'returned' book.book.id %}">Return</a>
+                                  </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div>
+        {% for message in messages %}
+        <h3> {{message}}  </h3>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

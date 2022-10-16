@@ -1,0 +1,30 @@
+{% block page_content %}
+<div class="card">
+    <div class="card-header">
+        <div class="row align-items-center">
+            <div class="col-8">
+                <h3 class="mb-0">Update Role #{{roles.id}}</h3>
+            </div>
+            <div class="col-4 text-right">
+                <a href="{% url 'role-detail' roles.id %}" class="btn btn-sm btn-info">View</a>
+                <a href="{% url 'role-list' %}" class="btn btn-sm btn-primary">View All</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="pl-lg-4">
+                <input type="text" name="name" placeholder="Role" value="{{roles.name}}"><br>
+
+                <div class="row">
+                    <div class="col-4 offset-4">
+                        <button type="submit" class="btn btn-success btn-block">Update</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
