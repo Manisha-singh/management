@@ -32,7 +32,6 @@ class Issue(models.Model):
         return "{}_{} book issue request".format(self.user_detail, self.book)
 
     def days_no(self):
-        "Returns the no. of days before returning / after return_date."
         if self.issued:
             y, m, d = str(timezone.now().date()).split('-')
             today = datetime.date(int(y), int(m), int(d))
